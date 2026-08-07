@@ -1,0 +1,20 @@
+parameters:
+    level: 9
+    scanDirectories:
+        - dev-stubs
+    paths:
+        - src
+    excludePaths:
+        - dev-stubs
+    treatPhpDocTypesAsPossiblyFalse:
+        - '#^iterable#'
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        -
+            message: '#^Interface .* extends interface#'
+            path: dev-stubs/*
+        -
+            message: '#PHPDoc tag @inheritDoc is not required#'
+            path: src/*
+    bootstrapFiles:
+        -

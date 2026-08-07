@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd"
+         name="Phlix Emerald Abyss Plugin">
+    <description>PHPCS configuration for phlix-plugin-emerald-abyss-theme</description>
+
+    <file>src</file>
+    <file>tests</file>
+
+    <exclude-pattern>dev-stubs/*</exclude-pattern>
+    <exclude-pattern>vendor/*</exclude-pattern>
+
+    <!-- PSR-12 -->
+    <rule ref="PSR12"/>
+
+    <!-- Array declarations -->
+    <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
+
+    <!-- Operators -->
+    <rule ref="Squiz.Operators.ValidLogicalOperators"/>
+
+    <!-- Strings -->
+    <rule ref="Squiz.Strings.ConcatenationSpacing">
+        <properties>
+            <property name="spacing" value="1"/>
+        </properties>
+    </rule>
+
+    <!-- Use statements -->
+    <rule ref="PSR12.Files.UseStatements"/>
+
+    <!-- New lines after namespace -->
+    <rule ref="PSR12.Files.FileHeader"/>
+
+    <!-- Visibility required -->
+    <rule ref="Squiz.Scope.MethodScope"/>
+    <rule ref="Squiz.Scope.VariableScope"/>
+
+    <!-- Function spacing -->
+    <rule ref="Squiz.Functions.FunctionDeclaration"/>
+    <rule ref="Squiz.Functions.GlobalFunction"/>
+
+    <!-- Lowercase keywords -->
+    <rule ref="Generic.PHP.LowerCaseKeyword"/>
+    <rule ref="Generic.PHP.LowerCaseConstant"/>
+
+    <!-- Case indenting -->
+    <rule ref="Generic.ControlStructures.InlineControlStructure"/>
+
+    <!-- Disallow multiple statements on one line -->
+    <rule ref="Squiz.ControlStructures.ControlSignature"/>
+
+    <!-- Disallow trailing whitespace -->
+    <rule ref="Generic.Files.LineLength"/>
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
+</ruleset>

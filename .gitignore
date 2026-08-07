@@ -1,0 +1,43 @@
+# Dependencies
+vendor/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+build/
+*.phar
+
+# Test coverage
+.phpunit.result.cache
+coverage/
+/coverage/
+
+# Composer
+composer.lock
+
+# PHPStan
+.phpstan/
+
+# CI/CD specific
+.env
+.env.local
+*.log
+
+# NetBeans
+nbproject/
+
+# Sublime Text
+*.sublime-*
+
+# Node (if any future frontend assets)
+node_modules/
+npm-debug.log*
+yarn-error.log
