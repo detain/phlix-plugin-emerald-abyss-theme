@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Phlix\EmeraldAbyss\Tests;
 
-use EmeraldAbyss\EmeraldAbyssPlugin;
+use Phlix\EmeraldAbyss\EmeraldAbyssPlugin;
 use Phlix\Shared\Plugin\LifecycleInterface;
 use Phlix\Theming\ThemeSourceInterface;
 use PHPUnit\Framework\TestCase;
