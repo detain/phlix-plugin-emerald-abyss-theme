@@ -5,9 +5,7 @@ parameters:
     paths:
         - src
     excludePaths:
-        - dev-stubs
-    treatPhpDocTypesAsPossiblyFalse:
-        - '#^iterable#'
+        - vendor
     reportUnmatchedIgnoredErrors: false
     ignoreErrors:
         -
@@ -16,5 +14,3 @@ parameters:
         -
             message: '#PHPDoc tag @inheritDoc is not required#'
             path: src/*
-    bootstrapFiles:
-        -
