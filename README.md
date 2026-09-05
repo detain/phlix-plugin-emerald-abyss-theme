@@ -58,6 +58,29 @@ composer require detain/phlix-plugin-emerald-abyss-theme
 - PHP 8.3+
 - Phlix Server 0.44.0+
 
+## Development
+
+Install dependencies and run the PHPUnit suite (`phpunit.xml`, bootstrapped by `tests/bootstrap.php`):
+
+```bash
+composer install
+vendor/bin/phpunit --colors=always
+```
+
+Static analysis at level 9 — pass `-c phpstan.neon` so `scanDirectories` picks up the host-only interface stubs in `dev-stubs/`:
+
+```bash
+composer phpstan
+```
+
+PSR-12 coding standard over `src/`, `tests/`, and `dev-stubs/`:
+
+```bash
+composer phpcs
+```
+
+CI (`.github/workflows/test.yml`) runs all three checks on PHP `8.3` and `8.4`, and uploads coverage to Codacy from the `8.3` leg.
+
 ## License
 
 MIT License - see [LICENSE](LICENSE) for details.
