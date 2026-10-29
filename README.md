@@ -23,7 +23,7 @@ A deep oceanic UI theme plugin for Phlix with teal emerald accents.
 #### Text
 - **Text**: `#e8f5f0` - Primary text (bright mint white)
 - **Text Muted**: `#8fbcaa` - Secondary text
-- **Text Subtle**: `#5a8574` - Tertiary text
+- **Text Subtle**: `#679a86` - Tertiary text (>= 4.5:1 on bg/surface/surface-2 per R6.5b)
 - **Text Faint**: `#334d42` - Disabled/hint text
 
 #### Borders

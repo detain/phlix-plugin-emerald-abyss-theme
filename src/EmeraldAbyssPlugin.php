@@ -109,7 +109,14 @@ final class EmeraldAbyssPlugin implements LifecycleInterface, ThemeSourceInterfa
                     // Text ramp.
                     '--text' => '#e8f5f0',
                     '--text-muted' => '#8fbcaa',
-                    '--text-subtle' => '#5a8574',
+                    // R6.5b (phlix-ui/src/tokens/contrast.test.ts) binds --text-subtle
+                    // to >= 4.5:1 on bg, surface AND surface-2 — surface-2 is a
+                    // resting content surface (MediaCard meta + admin captions).
+                    // The previous '#5a8574' managed only 4.11:1 on surface-2:
+                    // midnight's subtle does not transfer to this darker stack.
+                    // '#679a86' keeps the sea-green ramp and computes 6.28/5.86/
+                    // 5.34/4.73:1 (bg/surf/s2/s3) — verified WCAG 2.1 2026-10-29.
+                    '--text-subtle' => '#679a86',
                     '--text-faint' => '#334d42',
                     '--text-on-accent' => '#030807',
 
