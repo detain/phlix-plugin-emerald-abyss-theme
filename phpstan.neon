@@ -1,16 +1,22 @@
 parameters:
     level: 9
-    scanDirectories:
-        - dev-stubs
     paths:
         - src
-    excludePaths:
-        - vendor
-    reportUnmatchedIgnoredErrors: false
-    ignoreErrors:
-        -
-            message: '#^Interface .* extends interface#'
-            path: dev-stubs/*
-        -
-            message: '#PHPDoc tag @inheritDoc is not required#'
-            path: src/*
+        - tests
+    # `Phlix\Theming\ThemeSourceInterface` is declared by the HOST server, not by
+    # any Composer dependency, so PHPStan cannot find it in `vendor/`. It must be
+    # INTRODUCED (scanDirectories), not overridden (stubFiles) — `stubFiles` only
+    # replaces the definition of a symbol PHPStan can already resolve, so for a
+    # genuinely unfindable symbol it is silently useless.
+    scanDirectories:
+        - dev-stubs
+    # Shape ported verbatim from the family reference
+    # phlix-plugin-sample-theme/phpstan.neon on 2026-10-29. Prior config analysed
+    # `src` only — 127 lines — leaving the repo's largest, most intricate PHP
+    # (tests/SecurityAuditCheckTest.php, a token-stream brace-walker) dark to
+    # static analysis, behind two ignoreErrors entries: one structurally dead
+    # (neither dev-stub extends anything, so "Interface … extends interface"
+    # can never fire) and one suppressing a message this level never emits —
+    # held in place by `reportUnmatchedIgnoredErrors: false`, the setting that
+    # makes dead ignores permanent. Omitted here = PHPStan's default true: any
+    # future ignore entry that stops matching now surfaces instead of rotting.

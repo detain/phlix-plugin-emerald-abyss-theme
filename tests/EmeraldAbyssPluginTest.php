@@ -37,7 +37,9 @@ final class EmeraldAbyssPluginTest extends TestCase
     {
         $themes = $this->plugin->providedThemes();
 
-        $this->assertIsArray($themes);
+        // No assertIsArray here: providedThemes() is declared `: array`, so the
+        // language itself enforces arrayness and PHPStan level 9 flagged the
+        // assertion as one that can never fail. Count + shape are the real checks.
         $this->assertCount(1, $themes);
 
         $theme = $themes[0];
@@ -74,22 +76,28 @@ final class EmeraldAbyssPluginTest extends TestCase
 
     public function testOnEnableDoesNotThrow(): void
     {
+        // Official PHPUnit contract for "running this must not throw": the
+        // prior body ended in assertTrue(true), an assertion that can never
+        // fail (flagged by PHPStan level 9 on the tests corpus).
+        $this->expectNotToPerformAssertions();
         $container = $this->createMock(\Psr\Container\ContainerInterface::class);
 
         $this->plugin->onEnable($container);
-        $this->assertTrue(true); // Assertion confirms no exception thrown
     }
 
     public function testOnDisableDoesNotThrow(): void
     {
+        // See testOnEnableDoesNotThrow for why this replaces assertTrue(true).
+        $this->expectNotToPerformAssertions();
+
         $this->plugin->onDisable();
-        $this->assertTrue(true); // Assertion confirms no exception thrown
     }
 
     public function testSubscribedEventsReturnsEmptyArray(): void
     {
         $events = $this->plugin->subscribedEvents();
-        $this->assertIsArray($events);
+        // No assertIsArray here: subscribedEvents() is declared `: array`;
+        // assertEmpty on the typed return is the meaningful check.
         $this->assertEmpty($events);
     }
 }
