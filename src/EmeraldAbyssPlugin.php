@@ -87,7 +87,16 @@ final class EmeraldAbyssPlugin implements LifecycleInterface, ThemeSourceInterfa
                     '--accent-active' => '#14b8a6',
                     '--accent-soft' => 'rgba(45, 212, 168, 0.15)',
                     '--accent-ring' => 'rgba(45, 212, 168, 0.50)',
-                    '--accent-text' => '#042f2e',
+                    // Role: the accent used AS FOREGROUND text/icon on the
+                    // surfaces (every spinner, the active tab's label + underline,
+                    // selected chips). House contract: >= 4.5:1 on bg/surface/
+                    // surface-2. It is NOT the ink for text sitting ON accent
+                    // fills — that role is --text-on-accent below. The previous
+                    // '#042f2e' (an ink) computed 1.39/1.30/1.18:1 and rendered
+                    // spinners and active tabs invisible. '#2dd4a8' (= --accent,
+                    // the midnight built-in's own pattern) computes 10.65/9.94/
+                    // 9.05:1 — verified WCAG 2.1 from the hexes 2026-10-29.
+                    '--accent-text' => '#2dd4a8',
 
                     // Background + elevation stack.
                     '--bg' => '#030807',

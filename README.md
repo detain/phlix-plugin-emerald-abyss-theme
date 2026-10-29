@@ -45,7 +45,7 @@ A deep oceanic UI theme plugin for Phlix with teal emerald accents.
 | `--accent-active` | `#14b8a6` |
 | `--accent-soft` | `rgba(45, 212, 168, 0.15)` |
 | `--accent-ring` | `rgba(45, 212, 168, 0.50)` |
-| `--accent-text` | `#042f2e` |
+| `--accent-text` | `#2dd4a8` |
 
 ## Installation
 
