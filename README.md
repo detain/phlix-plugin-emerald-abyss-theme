@@ -88,4 +88,4 @@ MIT License - see [LICENSE](LICENSE) for details.
 ## Links
 
 - [GitHub Repository](https://github.com/detain/phlix-plugin-emerald-abyss-theme)
-- [Phlix](https://github.com/detain/phlix)
+- [Phlix](https://github.com/detain/phlix-server)
