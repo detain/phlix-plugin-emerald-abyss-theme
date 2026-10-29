@@ -1,43 +1,20 @@
-# Dependencies
-vendor/
+/vendor/
+/coverage.xml
+/coverage-report/
+/.phpunit.cache/
+/.phpunit.result.cache
 
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
+# NOTE: composer.lock is deliberately NOT ignored here — this repo commits it by
+# S440 law (see b6b44e8 and tests/SecurityAuditCheckTest.php's
+# testTheCommittedLockExists); the reference's own /composer.lock line is the
+# known family contradiction, kept out on purpose, not an oversight.
 
-# OS
-.DS_Store
-Thumbs.db
-
-# Build artifacts
-build/
-*.phar
-
-# Test coverage
-.phpunit.result.cache
-coverage/
-/coverage/
-
-# Composer
-composer.lock
-
-# PHPStan
-.phpstan/
-
-# CI/CD specific
-.env
-.env.local
-*.log
-
-# NetBeans
-nbproject/
-
-# Sublime Text
-*.sublime-*
-
-# Node (if any future frontend assets)
-node_modules/
-npm-debug.log*
-yarn-error.log
+# Per-checkout agent tooling and state — never part of a plugin package.
+# The plugins catalog checksums codeload archive/<ref>.tar.gz bytes, so tracked
+# agent state makes the distributed tarball — and every catalog pin — churn on
+# each caliber rewrite, and installs receive junk.
+.caliber/
+.claude/
+.opencode/
+.remember/
+CALIBER_LEARNINGS.md
