@@ -130,7 +130,11 @@ final class EmeraldAbyssPlugin implements LifecycleInterface, ThemeSourceInterfa
                     '--vignette' => 'rgba(0, 0, 0, 0.65)',
                     '--ambient' => 'rgba(45, 212, 168, 0.12)',
 
-                    // Legacy `--color-*` aliases — only the ones the shipped SPA still reads.
+                    // Legacy `--color-*` aliases (phlix-tokens src/css/colors.css names): exactly the
+                    // five the shipped SPA still var()-reads — 2026-10-29 census: bg 4, surface 11,
+                    // text 2, text-muted 7, border 13 consumers in phlix-ui src; every other
+                    // canonical alias measures zero. Each mirrors its modern token byte-exactly
+                    // above — that parity is a law: tests/TokenContrastTest.php.
                     '--color-bg' => '#030807',
                     '--color-surface' => '#071410',
                     '--color-text' => '#e8f5f0',
