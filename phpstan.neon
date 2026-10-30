@@ -3,6 +3,7 @@ parameters:
     paths:
         - src
         - tests
+        - scripts
     # `Phlix\Theming\ThemeSourceInterface` is declared by the HOST server, not by
     # any Composer dependency, so PHPStan cannot find it in `vendor/`. It must be
     # INTRODUCED (scanDirectories), not overridden (stubFiles) — `stubFiles` only
@@ -20,3 +21,8 @@ parameters:
     # held in place by `reportUnmatchedIgnoredErrors: false`, the setting that
     # makes dead ignores permanent. Omitted here = PHPStan's default true: any
     # future ignore entry that stops matching now surfaces instead of rotting.
+    # The `scripts` path (added 2026-10-30, W-min129) folds in the third and
+    # largest corpus — scripts/security-audit-check.php, 806 lines of process
+    # handling + JSON decoding. Verified clean at level 9 as of that fold;
+    # the file itself is S440-family byte-frozen, so future findings there
+    # must be cured config-side or upstream, never by editing the gate.

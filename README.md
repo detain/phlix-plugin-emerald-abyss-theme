@@ -1,6 +1,6 @@
 # Emerald Abyss Theme for Phlix
 
-A deep oceanic UI theme plugin for Phlix with teal emerald accents.
+A deep oceanic ui-theme plugin for Phlix with teal accents.
 
 ## Theme Identity
 
@@ -87,13 +87,13 @@ composer install
 vendor/bin/phpunit --colors=always
 ```
 
-Static analysis at level 9 — pass `-c phpstan.neon` so `scanDirectories` picks up the host-only interface stubs in `dev-stubs/`:
+Static analysis at level 9 over `src/`, `tests/` and `scripts/` — pass `-c phpstan.neon` so `scanDirectories` picks up the host-only interface stubs in `dev-stubs/`:
 
 ```bash
 composer phpstan
 ```
 
-PSR-12 coding standard over `src/`, `tests/`, and `dev-stubs/`:
+PSR-12 coding standard over `src/`, `tests/`, `dev-stubs/`, and `scripts/`:
 
 ```bash
 composer phpcs
@@ -109,3 +109,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 - [GitHub Repository](https://github.com/detain/phlix-plugin-emerald-abyss-theme)
 - [Phlix](https://github.com/detain/phlix-server)
+
+## Author
+
+Joe Huss <detain@interserver.net>

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Emerald Abyss — a deep oceanic ui-theme plugin for Phlix.
+ * Emerald Abyss — a deep oceanic ui-theme plugin for Phlix with teal accents.
  *
  * @copyright 2026 Joe Huss <detain@interserver.net>
  * @license   MIT
