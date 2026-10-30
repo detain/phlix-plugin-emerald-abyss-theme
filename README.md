@@ -2,9 +2,9 @@
 
 A deep oceanic UI theme plugin for Phlix with teal emerald accents.
 
-## Theme Tokens
+## Theme Identity
 
-| Token | Value | Description |
+| Field | Value | Description |
 |-------|-------|-------------|
 | **ID** | `emerald-abyss` | Theme identifier |
 | **Name** | Emerald Abyss | Display name |
@@ -15,16 +15,19 @@ A deep oceanic UI theme plugin for Phlix with teal emerald accents.
 ### Color Palette
 
 #### Background & Surfaces
-- **Background**: `#030807` - Deepest dark
-- **Surface**: `#071410` - Primary surface
-- **Surface 2**: `#0d1f18` - Elevated surface
-- **Surface 3**: `#132a23` - Highest elevation
+- **Background**: `#061009` - Deepest dark (kept clear of the OLED/TV black-crush floor)
+- **Surface**: `#0b1913` - Primary surface
+- **Surface 2**: `#12251e` - Elevated surface
+- **Surface 3**: `#142d25` - Highest elevation
+- **Surface Glass**: `rgba(11, 25, 19, 0.65)` - Translucent surface (tracks Surface)
+- **Surface Glass Strong**: `rgba(6, 16, 9, 0.85)` - Backdrop variant (tracks Background)
 
 #### Text
 - **Text**: `#e8f5f0` - Primary text (bright mint white)
 - **Text Muted**: `#8fbcaa` - Secondary text
 - **Text Subtle**: `#679a86` - Tertiary text (>= 4.5:1 on bg/surface/surface-2 per R6.5b)
-- **Text Faint**: `#334d42` - Disabled/hint text
+- **Text Faint**: `#3a574a` - Disabled/hint text (placeholder tier, house-exempt from AA)
+- **Text On Accent**: `#030807` - Ink for text and icons sitting ON accent fills
 
 #### Borders
 - **Border**: `#1a3329` - Default border
@@ -32,7 +35,7 @@ A deep oceanic UI theme plugin for Phlix with teal emerald accents.
 - **Border Strong**: `#2a4d3e` - Emphasized borders
 
 #### Atmosphere Effects
-- **Ambient**: `rgba(45, 212, 168, 0.12)` - Teal ambient glow
+- **Ambient**: `rgba(45, 212, 168, 0.18)` - Teal ambient glow
 - **Vignette**: `rgba(0, 0, 0, 0.65)` - Edge darkening
 - **Grain Opacity**: `0.035` - Film grain intensity
 
@@ -46,6 +49,23 @@ A deep oceanic UI theme plugin for Phlix with teal emerald accents.
 | `--accent-soft` | `rgba(45, 212, 168, 0.15)` |
 | `--accent-ring` | `rgba(45, 212, 168, 0.50)` |
 | `--accent-text` | `#2dd4a8` |
+
+### Legacy Aliases
+
+The five `--color-*` names from `phlix-tokens` `src/css/colors.css` this
+theme explicitly overrides, each mirroring its modern token byte-exactly —
+a tested law (`tests/TokenContrastTest.php`). The remaining `--color-*`
+names the SPA reads (`--color-error`, `--color-primary`, `--color-success`,
+`--color-warning`, `--color-info`) stay intentionally unset here and arrive
+inherited through `extends: midnight`.
+
+| Token | Mirrors | Value |
+|-------|---------|-------|
+| `--color-bg` | `--bg` | `#061009` |
+| `--color-surface` | `--surface` | `#0b1913` |
+| `--color-text` | `--text` | `#e8f5f0` |
+| `--color-text-muted` | `--text-muted` | `#8fbcaa` |
+| `--color-border` | `--border` | `#1a3329` |
 
 ## Installation
 
