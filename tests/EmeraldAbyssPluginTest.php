@@ -11,6 +11,25 @@ use PHPUnit\Framework\TestCase;
 
 final class EmeraldAbyssPluginTest extends TestCase
 {
+    // Verbatim mirrors of phlix-server src/Theming/ThemeTokenValidator's
+    // accepted token-value shapes (server coords at its current master:
+    // MAX_VALUE_LENGTH :101, HEX_PATTERN :106-107, NUMBER_PATTERN :114,
+    // FUNCTION_PATTERN :122-124, ARGUMENT :129, KEYWORDS :136, isSafeValue
+    // :238-253). Copied so this test refuses exactly what the server would
+    // refuse at enable time; re-check against the server if they move.
+    private const SERVER_MAX_VALUE_LENGTH = 128;
+    private const SERVER_HEX_PATTERN =
+        '/^#(?:[0-9A-Fa-f]{3}|[0-9A-Fa-f]{4}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})\z/';
+    private const SERVER_NUMBER_PATTERN = '/^[+-]?(?:[0-9]+(?:\.[0-9]+)?|\.[0-9]+)\z/';
+    private const SERVER_ARGUMENT = '[+-]?(?:[0-9]+(?:\.[0-9]+)?|\.[0-9]+)(?:%|(?i:deg))?';
+    private const SERVER_FUNCTION_PATTERN =
+        '/^(?i:rgba?|hsla?)\((?:[ ]*)' . self::SERVER_ARGUMENT
+        . '(?:(?:[ ]*)[,\/](?:[ ]*)' . self::SERVER_ARGUMENT . '){2,3}(?:[ ]*)\)\z/';
+    /**
+     * @var list<string>
+     */
+    private const SERVER_KEYWORDS = ['transparent', 'currentcolor'];
+
     private EmeraldAbyssPlugin $plugin;
 
     protected function setUp(): void
@@ -69,9 +88,39 @@ final class EmeraldAbyssPluginTest extends TestCase
             // Token names must start with '--'
             $this->assertStringStartsWith('--', $tokenName, "Token name must start with '--'");
 
-            // Token values must NOT contain var() references (self-referential)
-            $this->assertStringNotContainsString('var(', $tokenValue, "Token value must not contain var() references");
+            // Token values must pass the server's enable-time value grammar
+            // (mirrored below). This replaces the former not-contains 'var('
+            // check, which let '#nothex' and 'url(evil)' sail through (srphp
+            // review m2). var()/url() need no dedicated rejection: neither
+            // matches any of the three accepted grammars — and contrary to
+            // the old "(self-referential)" comment, the server refuses ALL
+            // off-grammar values, not just self-referencing var() ones.
+            $this->assertTrue(
+                self::valuePassesServerGrammar($tokenValue),
+                "Token {$tokenName} value '{$tokenValue}' fails the server's isSafeValue() grammar"
+            );
         }
+    }
+
+    /**
+     * Byte-faithful port of the server's ThemeTokenValidator::isSafeValue()
+     * (trim, length cap, lowercase keyword, hex/function/number grammars).
+     */
+    private static function valuePassesServerGrammar(string $value): bool
+    {
+        $trimmed = trim($value);
+
+        if ($trimmed === '' || strlen($trimmed) > self::SERVER_MAX_VALUE_LENGTH) {
+            return false;
+        }
+
+        if (in_array(strtolower($trimmed), self::SERVER_KEYWORDS, true)) {
+            return true;
+        }
+
+        return preg_match(self::SERVER_HEX_PATTERN, $trimmed) === 1
+            || preg_match(self::SERVER_FUNCTION_PATTERN, $trimmed) === 1
+            || preg_match(self::SERVER_NUMBER_PATTERN, $trimmed) === 1;
     }
 
     public function testOnEnableDoesNotThrow(): void

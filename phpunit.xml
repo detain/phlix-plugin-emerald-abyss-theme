@@ -10,6 +10,16 @@
          beStrictAboutOutputDuringTests="true"
          failOnRisky="true"
          failOnWarning="true">
+    <!-- STRICTER-THAN-REFERENCE POSTURE (srphp review m9, disclosed
+         2026-10-30): executionOrder="depends,defects",
+         beStrictAboutOutputDuringTests, failOnRisky and failOnWarning are
+         absent from the family reference (phlix-plugin-sample-theme/
+         phpunit.xml). They are deliberate here: a warning-emitting or
+         output-leaking test must not pass silently, and both CI legs (8.3
+         and 8.4) run this file, so "green" means the same thing twice.
+         The family standardization is owed UPWARD — reference and siblings
+         should adopt this posture, not the reverse; until then this
+         divergence is intentional, not accidental. -->
     <testsuites>
         <testsuite name="default">
             <directory>tests</directory>
@@ -20,9 +30,6 @@
         <include>
             <directory>src</directory>
         </include>
-        <exclude>
-            <directory>dev-stubs</directory>
-        </exclude>
     </source>
 
     <!-- The CI job's "Upload coverage to Codacy" step reads ./coverage.xml, and
