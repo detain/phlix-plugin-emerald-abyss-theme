@@ -87,7 +87,12 @@ composer install
 vendor/bin/phpunit --colors=always
 ```
 
-Static analysis at level 9 over `src/`, `tests/` and `scripts/` — pass `-c phpstan.neon` so `scanDirectories` picks up the host-only interface stubs in `dev-stubs/`:
+Static analysis at level 9 over `src/`, `tests/` and `scripts/` — `composer phpstan`
+already passes `-c phpstan.neon`, whose `scanDirectories` registers the `dev-stubs/`
+contracts. Of those two stubs, only `Phlix\Theming\ThemeSourceInterface` is host-only
+(declared by the server, in no Composer package at all); `Phlix\Shared\Plugin\LifecycleInterface`
+ships in `detain/phlix-shared` and is stubbed here only for the case where that package
+is absent:
 
 ```bash
 composer phpstan
