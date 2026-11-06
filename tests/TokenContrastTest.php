@@ -61,10 +61,14 @@ final class TokenContrastTest extends TestCase
     private const AA_UI_COMPONENT_RATIO = 3.0;
 
     /**
-     * The legacy alias → modern token pairs this theme ships, and the only
-     * `--color-*` names the shipped SPA reads (phlix-tokens src/css/colors.css
-     * canonical set, cross-checked against `var(--color-` hits in phlix-ui
-     * src components/pages/composables/styles/utils, 2026-10-29).
+     * The legacy alias → modern token pairs this theme ships: the five
+     * `--color-*` aliases whose modern sources this theme overrides, each
+     * mirrored byte-exactly (the parity law enforced below). The shipped SPA
+     * reads more than these five — the 2026-10-30 census at phlix-ui@be521ff5
+     * counts live `var()` readers for --color-error (3) and --color-primary/
+     * --color-success/--color-warning/--color-info (1 each); those stay unset
+     * here and arrive inherited through `extends: midnight`. Wording matches
+     * the census prose in src/EmeraldAbyssPlugin.php and README.md.
      *
      * @var array<string, string>
      */
