@@ -112,7 +112,7 @@ final class EmeraldAbyssPlugin implements LifecycleInterface, ThemeSourceInterfa
                     // tiny steps. --surface-3 lands at its AA ceiling: the
                     // reviewer's extrapolated lighter ground (#1a352c) fails
                     // the 4.5:1 --text-subtle and 3:1 --accent-ring floors
-                    // on it (4.12:1 / 2.90:1), so the top of this ladder is
+                    // on it (4.12:1 / 2.92:1), so the top of this ladder is
                     // law-bounded, not taste-bounded — see below.
                     '--bg' => '#061009',
                     '--surface' => '#0b1913',
@@ -147,18 +147,20 @@ final class EmeraldAbyssPlugin implements LifecycleInterface, ThemeSourceInterfa
                     '--text-on-accent' => '#030807',
 
                     // Borders. Untouched by the elevation lift on purpose:
-                    // --border's role is a 1.4x perceptual seam, and raising
-                    // the grounds moved border-on-bg from 1.49:1 to 1.43:1
-                    // (re-verified from the hexes 2026-10-30) — the same
-                    // tier midnight ships, not an AA-pinned role.
+                    // --border's role is a ~1.4x perceptual seam on this
+                    // theme's own grounds: raising those grounds moved
+                    // border-on-bg from 1.49:1 to 1.43:1 (re-verified from the
+                    // hexes 2026-10-30). Midnight ships a lower 1.23:1 here —
+                    // the shared trait is the non-AA decorative ROLE, not a
+                    // matched tier.
                     '--border' => '#1a3329',
                     '--border-subtle' => '#0f211b',
                     '--border-strong' => '#2a4d3e',
 
                     // Atmosphere. --ambient 0.12 -> 0.18 (2026-10-30): the
                     // old alpha was HALF the midnight base (0.24; sample
-                    // 0.22, arctic 0.18), leaving the "glow in the deep"
-                    // atmosphere the README advertises effectively absent
+                    // 0.22, arctic 0.18), leaving the "Teal ambient glow"
+                    // the README advertises (README.md:38) effectively absent
                     // at TV distance. 0.18 = the family's ratified floor.
                     '--grain-opacity' => '0.035',
                     '--vignette' => 'rgba(0, 0, 0, 0.65)',
@@ -175,9 +177,11 @@ final class EmeraldAbyssPlugin implements LifecycleInterface, ThemeSourceInterfa
                     // counts live `var()` readers for --color-error (3
                     // occurrences), --color-primary/--color-success/
                     // --color-warning/--color-info (1 each); those arrive
-                    // inherited, not shipped. The five mirrored here are
-                    // the highest-traffic aliases (bg 5, surface 12, text
-                    // 2, text-muted 7, border 14 occurrences, same census);
+                    // inherited, not shipped. The five mirrored here are the
+                    // aliases whose modern sources this theme overrides (their
+                    // census reader counts — bg 5, surface 12, text 2, text-muted
+                    // 7, border 14 — are descriptive, not the rule: --color-error
+                    // at 3 outranks --color-text at 2 yet inherits);
                     // each is set anyway — mirroring its modern token
                     // byte-exactly — because that is one fewer cascade
                     // assumption between a plugin author and a correct
