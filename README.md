@@ -27,7 +27,7 @@ A deep oceanic ui-theme plugin for Phlix with teal accents.
 - **Text Muted**: `#8fbcaa` - Secondary text
 - **Text Subtle**: `#679a86` - Tertiary text (>= 4.5:1 on bg/surface/surface-2 per R6.5b)
 - **Text Faint**: `#3a574a` - Disabled/hint text (placeholder tier, house-exempt from AA)
-- **Text On Accent**: `#030807` - Ink for text and icons sitting ON accent fills
+- **Text On Accent**: `#030807` - Ink for text and icons that sit on accent fills
 
 #### Borders
 - **Border**: `#1a3329` - Default border
@@ -104,7 +104,7 @@ PSR-12 coding standard over `src/`, `tests/`, `dev-stubs/`, and `scripts/`:
 composer phpcs
 ```
 
-CI (`.github/workflows/test.yml`) runs all three checks on PHP `8.3` and `8.4`, and uploads coverage to Codacy from the `8.3` leg.
+CI (`.github/workflows/test.yml`) runs all three checks on PHP `8.3` and `8.4`, and uploads coverage to Codacy from the `8.3` leg. A dedicated Security Audit job additionally checks the committed lock (runtime and development dependencies) via `scripts/security-audit-check.php`.
 
 ## License
 
