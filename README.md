@@ -69,9 +69,27 @@ inherited through `extends: midnight`.
 
 ## Installation
 
+This package is **not published to Packagist** (its
+`repo.packagist.org/p2/detain/phlix-plugin-emerald-abyss-theme.json` metadata
+endpoint answers 404, verified 2026-11-12), so a plain
+
 ```bash
 composer require detain/phlix-plugin-emerald-abyss-theme
 ```
+
+resolves nothing — and it was never the install route anyway: the Phlix server
+does not scan Composer's `vendor/` for plugins. The plugin loader stages
+plugins under the server's `var/plugins/` from digest-pinned sources and
+verifies the bytes before extracting anything (remote sources without a pin are
+refused by design, not by accident).
+
+The supported route is the official plugin catalog — this repo is listed in
+[`detain/phlix-plugins`](https://github.com/detain/phlix-plugins) with a pinned
+`ref` + `artifactSha256`:
+
+1. Log in as an admin user.
+2. Open **Admin → Plugins** (`/app/admin/plugins`).
+3. Find **Emerald Abyss Theme** in the catalog and press **Install**.
 
 ## Requirements
 
