@@ -129,7 +129,7 @@ final class EmeraldAbyssPluginTest extends TestCase
         // prior body ended in assertTrue(true), an assertion that can never
         // fail (flagged by PHPStan level 9 on the tests corpus).
         $this->expectNotToPerformAssertions();
-        $container = $this->createMock(\Psr\Container\ContainerInterface::class);
+        $container = $this->createStub(\Psr\Container\ContainerInterface::class);
 
         $this->plugin->onEnable($container);
     }
